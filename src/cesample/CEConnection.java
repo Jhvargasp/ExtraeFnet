@@ -72,6 +72,7 @@ public class CEConnection
         domainName = dom.get_Name();
         ost = getOSSet();
         isConnected = true;
+        System.out.println("Connected!!");
     }
 
 	/*

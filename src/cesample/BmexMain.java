@@ -16,7 +16,9 @@ import com.filenet.api.query.RepositoryRow;
 public class BmexMain {
 
 	public static void main(String[] args) {
-		new BmexMain().execute();
+		BmexMain m= new BmexMain();
+		m.execute();
+		
 		
 
 	}
@@ -29,14 +31,14 @@ public class BmexMain {
         try
         {
         	{
-        		String osname = bundle.getString("os");
+        		String osname = bundle.getString("objectStore");
         		ObjectStore os = ce.fetchOS(osname);
         		Vector rows = new Vector();
         		Vector columns = new Vector();
         		int mRows = 999999	;
-        		String select="prop1,prop2,prop3";
-        		String from="ExpedienteDC";
-				String where="VersionStatus=1 and.,,";
+        		String select="DocumentTitle";
+        		String from="ExpedientesDC";
+				String where="VersionStatus=1 ";//
 				RepositoryRowSet rrs = CEUtil.fetchResultsRowSet(os, select, from, where, mRows);
         		Iterator it = rrs.iterator();
         		boolean firstPass = true;
@@ -60,11 +62,8 @@ public class BmexMain {
 	}
 	
 	private void execute() {
-		/*bundle.getString("url"), bundle.getString("usr"), bundle.getString("pwd"),
-		bundle.getString("context"), bundle.getString("wasp"), bundle.getString("region"),
-		bundle.getString("objectStore")*/
 		ce.establishConnection(bundle.getString("usr"),bundle.getString("pwd"),bundle.getString("context"),bundle.getString("url"));
-		
+		executeQuery();
 	}
 
 }
