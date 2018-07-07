@@ -16,7 +16,7 @@
 	© Copyright IBM Corporation 2007, ALL RIGHTS RESERVED.
  */
 
-package cesample;
+package com.citi.extrfnet;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -25,6 +25,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
@@ -427,6 +429,9 @@ public class CEUtil
     		}
     		else
     		{
+    			if(value instanceof Date){
+					value=new SimpleDateFormat("MM/dd/yyyy").format(value);
+				}
     			row.add(value.toString());
     		}
     	}

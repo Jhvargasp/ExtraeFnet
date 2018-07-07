@@ -16,7 +16,7 @@
 	© Copyright IBM Corporation 2007, ALL RIGHTS RESERVED.
  */
 
-package cesample;
+package com.citi.extrfnet;
 
 import java.util.Iterator;
 import java.util.Vector;

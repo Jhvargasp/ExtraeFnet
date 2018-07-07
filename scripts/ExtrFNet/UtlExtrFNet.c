@@ -153,6 +153,7 @@ interrupt_handler (int iVar)
 void Inicia_Proceso ( ) 
 {
 
+
 	char vartemp[11];
 
 	initialize ();
