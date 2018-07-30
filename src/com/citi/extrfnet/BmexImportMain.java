@@ -40,7 +40,15 @@ public class BmexImportMain {
 	private static ResourceBundle bundle = ResourceBundle.getBundle("filenet");
 
 	private void execute(String fName) {
-		ce.establishConnection(bundle.getString("usr"),bundle.getString("pwd"),bundle.getString("context"),bundle.getString("url"));
+		UtilCypher cypher=new UtilCypher();
+		String pwd="";
+		try {
+			pwd=cypher.decrypt(bundle.getString("pwd"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ce.establishConnection(bundle.getString("usr"),pwd,bundle.getString("context"),bundle.getString("url"));
 		List<String[]>records=CsvFileReader.readCsvFile(fName);
 		createRecords(records);
 	}

@@ -99,7 +99,16 @@ public class BmexMain {
 	}
 	
 	private void execute(int opc,String fOp) {
-		ce.establishConnection(bundle.getString("usr"),bundle.getString("pwd"),bundle.getString("context"),bundle.getString("url"));
+		UtilCypher cypher=new UtilCypher();
+		String pwd="";
+		try {
+			pwd=cypher.decrypt(bundle.getString("pwd"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ce.establishConnection(bundle.getString("usr"),pwd,bundle.getString("context"),bundle.getString("url"));
 		List results=executeQuery(opc,fOp,null,null);
 		CsvFileWriter.writeCsvFile(bundle.getString("fileName"),results);
 		procesaIndices(results,opc,fOp);
