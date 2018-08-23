@@ -1,8 +1,12 @@
 package com.citi.extrfnet;
 
+import java.io.File;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -27,15 +31,29 @@ public class BmexMain {
 		int opc=0;
 		String fOp=null;
 		if(args!=null && args.length>0){
-			opc=Integer.parseInt(args[0]);
-			fOp=(args[1]);
+			opc=Integer.parseInt(args[1]);
+			fOp=(args[2]);
 		}
 		BmexMain m= new BmexMain();
+		String locationBundle=args[0];
+		setBundle(locationBundle);
 		m.execute(opc,fOp);
 		
 		
 
 	}
+	
+	private static void setBundle(String locationBundle) {
+		try {
+		File file = new File(locationBundle);
+		URL[] urls = {file.toURI().toURL()};
+		ClassLoader loader = new URLClassLoader(urls);
+		bundle = ResourceBundle.getBundle("filenet", Locale.getDefault(), loader);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private CEConnection ce = new CEConnection();
 	private static Logger log = Logger.getLogger(BmexMain.class);
 	private static ResourceBundle bundle = ResourceBundle.getBundle("filenet");

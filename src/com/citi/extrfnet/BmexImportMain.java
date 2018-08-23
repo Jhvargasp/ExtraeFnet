@@ -1,10 +1,13 @@
 package com.citi.extrfnet;
 
 import java.io.File;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -30,10 +33,23 @@ public class BmexImportMain {
 
 	public static void main(String[] args) {
 		BmexImportMain m= new BmexImportMain();
-		m.execute(args[0]);
+		String locationBundle=args[0];
+		setBundle(locationBundle);
+		m.execute(args[1]);
 		
 		
 
+	}
+	private static void setBundle(String locationBundle) {
+		try {
+		File file = new File(locationBundle);
+		URL[] urls = {file.toURI().toURL()};
+		ClassLoader loader = new URLClassLoader(urls);
+		bundle = ResourceBundle.getBundle("filenet", Locale.getDefault(), loader);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	private CEConnection ce = new CEConnection();
 	private static Logger log = Logger.getLogger(BmexImportMain.class);
