@@ -5,28 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
-import java.util.Vector;
-
-import javax.swing.table.DefaultTableModel;
 
 import org.apache.log4j.Logger;
-
-import com.filenet.api.collection.RepositoryRowSet;
-import com.filenet.api.constants.RefreshMode;
-import com.filenet.api.core.Document;
-import com.filenet.api.core.Factory;
-import com.filenet.api.core.ObjectStore;
-import com.filenet.api.core.ReferentialContainmentRelationship;
-import com.filenet.api.exception.EngineRuntimeException;
-import com.filenet.api.query.RepositoryRow;
-import com.filenet.apiimpl.util.ExportXML;
 
 public class PropertiesUpdateMain {
 
