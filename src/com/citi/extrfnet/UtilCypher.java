@@ -54,7 +54,7 @@ public class UtilCypher {
 	
 	public static void main(String[] args) throws Exception {
 		UtilCypher c=new UtilCypher();
-		String t=c.encrypt("7Fmw1y7O");
+		String t=c.encrypt("sistemas2012");
 		System.out.println(t);
 		System.out.println(c.decrypt(t));
 	}

@@ -104,6 +104,10 @@ public class BmexMain {
         				firstPass = false;
         			}
         			rows = CEUtil.getResultRow(rr);
+        			
+        			String docTitle=CEUtil.writeDocContentToFile(CEUtil.fetchDocById(os, rr.getProperties().getIdValue("Id").toString()), bundle.getString("folderDestination"));
+        			rows.add(docTitle);
+        			
         			results.add(rows);
         		}
         		
