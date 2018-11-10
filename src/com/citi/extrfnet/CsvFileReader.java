@@ -1,6 +1,7 @@
 package com.citi.extrfnet;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,9 +20,10 @@ public class CsvFileReader {
 
 		BufferedReader fileReader = null;
 		List<String[]> records = new ArrayList();
-
+		System.out.println("Reading "+fileName);
 		try {
-
+			System.out.println("Exist? "+new File(fileName).exists());
+			
 			String line = "";
 
 			// Create the file reader

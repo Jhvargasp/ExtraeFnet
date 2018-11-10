@@ -16,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
 import org.apache.log4j.Logger;
 
 import com.filenet.api.collection.RepositoryRowSet;
+import com.filenet.api.constants.AutoClassify;
+import com.filenet.api.constants.CheckinType;
 import com.filenet.api.constants.RefreshMode;
 import com.filenet.api.core.Document;
 import com.filenet.api.core.Factory;
@@ -28,6 +30,7 @@ import com.filenet.apiimpl.util.ExportXML;
 public class BmexImportMain {
 
 	private static final String FOLDER_LOCATION = "/test/cetest";
+	//private static final String EXPEDIENTES_DC = "Document";
 	private static final String EXPEDIENTES_DC = "ExpedientesDC";
 
 
@@ -78,10 +81,12 @@ public class BmexImportMain {
 			//Id,NumCliente,TipoDoc,XfolioS,Contrato,Linea,Producto,Instrumento,FolioS403,UOC,Folio,CalificaOnDemand,Status,XfolioP,FechaOperacion
 			//" SecLote": Statusimagen":"fileName
 			String fileName=row[19];
+			//String fileName=row[0];
 			Document doc;
 			try {
 				doc = CEUtil.createDocWithContent(new File(fileName), MimeUtil.getMimeType(fileName), os,row[1] ,EXPEDIENTES_DC);
 				int i=1;
+	//			doc.getProperties().putObjectValue("DocumentTitle", row[i++]);
 				doc.getProperties().putObjectValue("NumCliente", row[i++]);
 				doc.getProperties().putObjectValue("TipoDoc", Integer.parseInt(row[i++]));
 				doc.getProperties().putObjectValue("XfolioS", Integer.parseInt(row[i++]));
@@ -103,7 +108,7 @@ public class BmexImportMain {
 				doc.getProperties().putObjectValue("SecLote", Integer.parseInt(row[i++]));
 				doc.getProperties().putObjectValue("StatusImagen", Integer.parseInt(row[i++]));
 
-
+				doc.checkin(AutoClassify.DO_NOT_AUTO_CLASSIFY, CheckinType.MAJOR_VERSION);
 				doc.save(RefreshMode.REFRESH);
 		        ReferentialContainmentRelationship rcr = CEUtil.fileObject(os, doc, FOLDER_LOCATION);
 		        rcr.save(RefreshMode.REFRESH);
